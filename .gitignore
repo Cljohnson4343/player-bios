@@ -24,3 +24,6 @@
 
 # player bios data
 */scrapers/bios*
+
+# player bios build artifact
+*/playerbios-api
