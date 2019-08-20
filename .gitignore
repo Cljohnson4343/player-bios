@@ -23,7 +23,12 @@
 */yarn-error.log*
 
 # player bios data
-*/scrapers/bios*
+**/scrapers/bios**
+**/data/*.json
 
-# player bios build artifact
+# player bios build artifact and config
 */playerbios-api
+*/config.yaml
+
+# python cache files
+**/*pycache*/**

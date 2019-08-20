@@ -47,7 +47,8 @@ class NbaBios(scrapy.Spider):
         'last_name': res.css('span.wisbb_lastName::text').get(),
         'born': born,
         'hometown': hometown,
-        'league': 'nba'
+        'league': 'nba',
+        'url': res.url
       }
 
 
