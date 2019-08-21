@@ -25,6 +25,7 @@
 # player bios data
 **/scrapers/bios**
 **/data/*.json
+**/*.csv
 
 # player bios build artifact and config
 */playerbios-api

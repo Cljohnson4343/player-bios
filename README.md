@@ -24,12 +24,29 @@ scrapy crawl <{nba_bios|nfl_bios|mlb_bios|nhl_bios|tennis_bios}> -o <output file
 
 ### Cleaning Data
 
+#### Clean Player Bio
+
 Run the following command:
 
 ```shell
 python clean.py ./scrapers/<input file> <output file>
 ```
 
+#### Extract US places from scraped bio info
+
+Run the following command:
+
+`````shell
+python address_extraction.py <input file> <output file>
+```
+
+#### Compile US places from extracted US places
+
+Run the following command:
+
+````shell
+python compile_us_addresses.py <input csv file> [, ...] <output csv file>
+```
 ### Inserting Data
 
 Create and set up a postgresql database using the /playerbios-api/db/playerbios_schema.sql schema.
@@ -37,4 +54,4 @@ Run the following command:
 
 ```shell
 playerbios-api insert <json input file> --config <config file>
-```
+`````
