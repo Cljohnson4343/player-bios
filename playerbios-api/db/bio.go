@@ -1,7 +1,6 @@
 package db
 
 import (
-	"fmt"
 	"playerbios-api/models"
 )
 
@@ -75,7 +74,6 @@ RETURNING id;`
 
 // InsertBio inserts a player bio into the db
 func InsertBio(b *models.Bio) (*models.Bio, error) {
-	fmt.Print(b)
 	err := stmtMap["biosInsert"].QueryRow(
 		b.First,
 		b.Last,
