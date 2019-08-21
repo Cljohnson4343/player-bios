@@ -14,8 +14,8 @@ type Bio struct {
 	Born      *time.Time `json:"born"`
 	URL       string     `json:"url"`
 	Hometown  string     `json:"hometown"`
-	Latitude  float32    `json:"lat"`
-	Longitude float32    `json:"lon"`
+	Latitude  float32    `json:"latitude,string"`
+	Longitude float32    `json:"longitude,string"`
 	League    string     `json:"league"`
 }
 

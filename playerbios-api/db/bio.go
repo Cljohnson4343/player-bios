@@ -1,6 +1,7 @@
 package db
 
 import (
+	"fmt"
 	"playerbios-api/models"
 )
 
@@ -60,10 +61,21 @@ INSERT INTO bios(
 	league
 )
 VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+ON CONFLICT ON CONSTRAINT same_player_bio 
+DO UPDATE SET 
+	first_name = $1,
+	last_name = $2,
+	bio_url = $3,
+	hometown = $4,
+	latitude = $5,
+	longitude = $6,
+	born = $7,
+	league = $8
 RETURNING id;`
 
 // InsertBio inserts a player bio into the db
 func InsertBio(b *models.Bio) (*models.Bio, error) {
+	fmt.Print(b)
 	err := stmtMap["biosInsert"].QueryRow(
 		b.First,
 		b.Last,

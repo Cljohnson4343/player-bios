@@ -31,24 +31,6 @@ func GetBiosFromJSONFile(name string) ([]*models.Bio, error) {
 			err,
 		)
 	}
-	/*
-		b, err := ioutil.ReadAll(file)
-		if err != nil {
-			return nil, fmt.Errorf(
-				"error reading file %s: %v",
-				name,
-				err,
-			)
-		}
-		bios, err := models.UnmarshalJSON(b)
-		if err != nil {
-			return nil, fmt.Errorf(
-				"error unmarshaling file %s: %v",
-				name,
-				err,
-			)
-		}
-	*/
 
 	return bios, nil
 }
