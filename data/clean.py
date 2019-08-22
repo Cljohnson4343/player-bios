@@ -32,14 +32,14 @@ def formatPlayer(player):
   if hasDOB(player) == False:
     del player["born"]
   if hasHometown(player) == False:
-    del player["born"]
+    del player["hometown"]
 
   return player
 
 def formatDate(player):
   if hasDOB(player):
     splt = player["born"].split("/")
-    player["born"] = f'{splt[2]}-{format(splt[0])}-{format(splt[1])}T00:00:00Z'
+    player["born"] = f'{splt[2]}-{format(splt[0])}-{format(splt[1])}T12:00:00Z'
 
   return player
 
