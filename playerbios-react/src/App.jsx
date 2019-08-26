@@ -1,7 +1,8 @@
 import React from 'react';
+import DOBHistogram from './DOBHistogram';
 
 function App() {
-  return <div>Player Bios!!!!</div>;
+  return <DOBHistogram />;
 }
 
 export default App;
