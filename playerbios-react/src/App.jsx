@@ -1,8 +1,8 @@
 import React from 'react';
-import DOBHistogram from './DOBHistogram';
+import HometownMap from './HometownMap/HometownMap';
 
 function App() {
-  return <DOBHistogram />;
+  return <HometownMap />;
 }
 
 export default App;

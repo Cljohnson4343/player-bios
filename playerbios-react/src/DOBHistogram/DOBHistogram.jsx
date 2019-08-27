@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import * as d3 from 'd3';
-import { dobData } from '../data';
+import { dobData, dobMonthlyAverages } from '../data';
 
 const xSelector = d => d.date;
 const ySelector = d => d.value;
@@ -31,12 +31,21 @@ function DOBHistogram(props) {
 
   useEffect(() => {
     axios.get('http://localhost:4343/api/v0/bios/bios').then(response => {
+      console.dir(dobMonthlyAverages(response.data));
       setData(dobData(response.data));
     });
   }, []);
 
   const canvasWidth = 1200;
   const canvasHeight = 100;
+
+  const stack = d3
+    .stack()
+    .keys(['nba', 'nfl', 'nhl', 'mlb'])
+    .order(d3.stackOrderNone)
+    .offset(d3.stackOffsetNone);
+
+  const series = stack(data);
 
   const svgCanvas = d3
     .select(canvsEl.current)
