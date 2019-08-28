@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 
-const alpha = 0.1;
+const alpha = 0.07;
 function HometownHeatMap(props) {
   const { height, playerData, populationData, rSelector, width, xSelector, ySelector } = props;
 
@@ -37,7 +37,6 @@ function HometownHeatMap(props) {
   popRScale.range([popRMin, popRMax]);
 
   const playerPopulation = playerData.reduce((acc, d) => acc + rSelector(d), 0);
-  console.log(playerPopulation);
   const playerPerPixel = playerPopulation / pixels;
   const playerMax = playerRScale.domain()[1];
   const playerRMin = 0;
@@ -55,7 +54,7 @@ function HometownHeatMap(props) {
       .attr('width', outerWidth)
       .attr('height', outerHeight)
       .style('border', '1px solid black')
-      .style('background', 'black');
+      .style('background', 'white');
 
     const popG = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`);
     popG
@@ -66,7 +65,7 @@ function HometownHeatMap(props) {
       .attr('cx', d => xScale(xSelector(d)))
       .attr('cy', d => yScale(ySelector(d)))
       .attr('r', d => playerRScale(rSelector(d)))
-      .attr('fill', `rgba(255, 0, 0, ${alpha})`);
+      .attr('fill', `rgba(0, 255, 0, ${alpha})`);
     svg
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
@@ -77,7 +76,7 @@ function HometownHeatMap(props) {
       .attr('cx', d => xScale(xSelector(d)))
       .attr('cy', d => yScale(ySelector(d)))
       .attr('r', d => popRScale(rSelector(d)))
-      .attr('fill', `rgba(0, 0, 255, ${alpha})`);
+      .attr('fill', `rgba(255, 0, 0, ${alpha})`);
   }, [playerData, populationData]);
 
   return <div ref={canvasEl} />;
