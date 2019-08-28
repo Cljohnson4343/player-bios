@@ -11,6 +11,7 @@ CITY = 0
 STATE = 1
 LATITUDE = 2
 LONGITUDE = 3
+COUNTY = 10
 
 def getCityState(home):
   strs = home.split(",")
@@ -28,17 +29,25 @@ def isInUSA(state):
 
   return False
 
+def formatCounty(county):
+  words = county.split(" ")
+  if words[-1].lower() == "county":
+    return " ".join(words[:-1])
+
+  return county
+    
 def main(argv):
   if len(argv) < 3:
     print("usage: add_geocoding.py <geocoded csv file> <input json file> <output json file>")
     return
   with open(argv[0]) as csv_file:
     csv_data = csv.reader(csv_file, delimiter=',') 
-    mapToLatLon = {}
+    mapToLatLonCounty = {}
     for row in csv_data:
-      mapToLatLon['{}, {}'.format(row[CITY], row[STATE])] = {
+      mapToLatLonCounty['{}, {}'.format(row[CITY], row[STATE])] = {
         'latitude': row[LATITUDE],
-        'longitude': row[LONGITUDE]
+        'longitude': row[LONGITUDE],
+        'county': row[COUNTY]
       }
 
     with open(argv[1]) as json_file:
@@ -46,9 +55,10 @@ def main(argv):
       for player in bios:
         home = getCityState(player["hometown"])
         if (isInUSA(home["state"])):
-          geo = mapToLatLon[player["hometown"]]
+          geo = mapToLatLonCounty[player["hometown"]]
           player["latitude"] = geo["latitude"]
           player["longitude"] = geo["longitude"]
+          player["county"] = formatCounty(geo["county"])
 
       with open(argv[2], "+a") as outfile:
         json.dump(bios, outfile)

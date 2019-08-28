@@ -6,7 +6,7 @@ import csv
 
 def main(argv):
   if len(argv) < 2:
-    print("usage: address_extraction.py <inputfile> [, ...] <outputfile>")
+    print("usage: compile_us_addresses.py <inputfile> [, ...] <outputfile>")
     return
   number_input_files = len(argv)-1
   cities = set()
