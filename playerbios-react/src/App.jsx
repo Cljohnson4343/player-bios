@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import HometownMap from './HometownMap';
-import PopulationMap from './PopulationMap';
+import HometownHeatMap from './HometownHeatMap';
 
 const useStyles = makeStyles({
   container: {
@@ -13,8 +12,7 @@ function App() {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <HometownMap />
-      <PopulationMap />
+      <HometownHeatMap />
     </div>
   );
 }

@@ -5,6 +5,13 @@ import sys
 import csv
 import json
 
+keys = ['county', 'state', 'population', 'latitude', 'longitude']
+county = 2
+state = 3
+population = 4
+latitude = 5
+longitude = 6
+
 def main(argv):
   if len(argv) < 2:
     print("usage: convert_to_json.py <inputfile> <outputfile>")
@@ -13,16 +20,18 @@ def main(argv):
     data_in = csv.reader(csv_file, delimiter=',')
 
     cities = []
-    keys = []
     line_count = 0
     for row in data_in:
       if line_count == 0:
-        keys = row
         line_count += 1
       else:
-        city = {}
-        for i in range(len(keys)):
-          city[keys[i].lower()] = row[i]
+        city = {
+          'county': row[county],
+          'state': row[state],
+          'population': row[population],
+          'latitude': row[latitude],
+          'longitude': row[longitude]
+        }
         cities.append(city)
         line_count += 1
 
