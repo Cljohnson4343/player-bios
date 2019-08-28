@@ -14,7 +14,8 @@ var biosAllScript = `
 		longitude,
 		born,
 		league,
-		id
+		id,
+		county
 	FROM bios;`
 
 // GetBios returns all player bios from db
@@ -38,6 +39,7 @@ func GetBios() ([]*models.Bio, error) {
 			&bio.Born,
 			&bio.League,
 			&bio.ID,
+			&bio.County,
 		)
 		if err != nil {
 			return bios, err
@@ -57,9 +59,10 @@ INSERT INTO bios(
 	latitude,
 	longitude,
 	born,
-	league
+	league,
+	county
 )
-VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
 ON CONFLICT ON CONSTRAINT same_player_bio 
 DO UPDATE SET 
 	first_name = $1,
@@ -69,7 +72,8 @@ DO UPDATE SET
 	latitude = $5,
 	longitude = $6,
 	born = $7,
-	league = $8
+	league = $8,
+	county = $9
 RETURNING id;`
 
 // InsertBio inserts a player bio into the db
@@ -83,6 +87,7 @@ func InsertBio(b *models.Bio) (*models.Bio, error) {
 		b.Longitude,
 		b.Born,
 		b.League,
+		b.County,
 	).Scan(&b.ID)
 
 	return b, err

@@ -17,6 +17,7 @@ type Bio struct {
 	Latitude  float32    `json:"latitude,string"`
 	Longitude float32    `json:"longitude,string"`
 	League    string     `json:"league"`
+	County    string     `json:"county"`
 }
 
 // UnmarshalJSON unmarshals given byte slice into Bio struct

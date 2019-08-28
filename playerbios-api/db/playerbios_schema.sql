@@ -13,6 +13,7 @@ CREATE TABLE bios (
   longitude real,
   born timestamp,
   league varchar(5),
+  county text,
 
   PRIMARY KEY(id),
   CONSTRAINT same_player_bio UNIQUE(first_name, last_name, league, bio_url)
