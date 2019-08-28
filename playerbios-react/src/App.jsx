@@ -1,8 +1,22 @@
 import React from 'react';
-import HometownMap from './HometownMap/HometownMap';
+import { makeStyles } from '@material-ui/styles';
+import HometownMap from './HometownMap';
+import PopulationMap from './PopulationMap';
+
+const useStyles = makeStyles({
+  container: {
+    display: 'flex'
+  }
+});
 
 function App() {
-  return <HometownMap />;
+  const classes = useStyles();
+  return (
+    <div className={classes.container}>
+      <HometownMap />
+      <PopulationMap />
+    </div>
+  );
 }
 
 export default App;

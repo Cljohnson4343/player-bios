@@ -1,22 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
-import { latLonData } from '../data';
+import React from 'react';
 import ScatterPlotMap from '../ScatterPlotMap';
+import data from '../data/us-counties-8200-geocoded.json';
 
 const xSelector = d => parseFloat(d.longitude);
 const ySelector = d => parseFloat(d.latitude);
 const rSelector = d => parseFloat(d.population);
-const playerPerPixel = 1;
+const playerPerPixel = 42000;
 
-function HometownMap(props) {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:4343/api/v0/bios/bios').then(response => {
-      setData(latLonData(response.data));
-    });
-  }, []);
-
+function PopulationMap(props) {
   return (
     <ScatterPlotMap
       data={data}
@@ -30,4 +21,4 @@ function HometownMap(props) {
   );
 }
 
-export default HometownMap;
+export default PopulationMap;
