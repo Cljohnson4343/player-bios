@@ -5,7 +5,9 @@ import sys
 import csv
 import json
 
-keys = ['county', 'state', 'population', 'latitude', 'longitude']
+keys = ['county', 'state', 'population', 'latitude', 'longitude', 'id']
+statefp = 0
+countyfp = 1
 county = 2
 state = 3
 population = 4
@@ -30,7 +32,8 @@ def main(argv):
           'state': row[state],
           'population': row[population],
           'latitude': row[latitude],
-          'longitude': row[longitude]
+          'longitude': row[longitude],
+          'id': row[statefp] + row[countyfp]
         }
         cities.append(city)
         line_count += 1
